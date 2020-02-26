@@ -1,6 +1,6 @@
 import pytest
 
-from movies.models import Movie
+from app.movies import Movie
 
 
 @pytest.mark.django_db

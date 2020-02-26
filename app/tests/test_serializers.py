@@ -1,4 +1,4 @@
-from movies.serializers import MovieSerializer
+from app.movies import MovieSerializer
 
 
 def test_valid_serializer():

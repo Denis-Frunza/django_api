@@ -1,6 +1,5 @@
 import pytest
 
-from movies.models import Movie
 
 @pytest.mark.django_db
 def test_add_movie_invalid_json(client):
