@@ -1,7 +1,7 @@
 from rest_framework import generics
 
 
-from movies.models import Movie
+from .models import Movie
 from .serializers import MovieSerializer
 
 

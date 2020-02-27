@@ -1,11 +1,16 @@
 from django.contrib import admin
 
-
-from movies.models import Movie
+from .models import Movie
 
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    fields = ('title', 'genre', 'year', 'created_date', 'updated_date',)
-    list_display = ('title', 'genre', 'year', 'created_date', 'updated_date',)
-    readonly_fields = ('created_date', 'updated_date',)
+    fields = (
+        "title", "genre", "year", "created_date", "updated_date",
+    )
+    list_display = (
+        "title", "genre", "year", "created_date", "updated_date",
+    )
+    readonly_fields = (
+        "created_date", "updated_date",
+    )
