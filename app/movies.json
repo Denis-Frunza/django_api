@@ -1,0 +1,35 @@
+[
+  {
+    "model": "movies.movie",
+    "pk": 1,
+    "fields": {
+      "title": "Black Widow",
+      "genre": "Fantasy/Sci-fi",
+      "year": "2020",
+      "created_date": "2020-02-29T23:07:11.686Z",
+      "updated_date": "2020-02-29T23:07:11.686Z"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 2,
+    "fields": {
+      "title": "Bridge of Spies",
+      "genre": "Drama/Thriller",
+      "year": "2015",
+      "created_date": "2020-01-18T23:07:52.070Z",
+      "updated_date": "2020-01-18T23:07:52.070Z"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 3,
+    "fields": {
+      "title": "A Serious Man",
+      "genre": "comedy",
+      "year": "2009",
+      "created_date": "2020-01-18T23:08:22.582Z",
+      "updated_date": "2020-01-18T23:08:22.582Z"
+    }
+  }
+]

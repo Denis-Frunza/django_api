@@ -29,6 +29,7 @@ TODO:
 - [ ] Configure GitLab CI for continuous integration and deployment
 - [ ] Deploy Django, Gunicorn to Heroku with Docker
 - [ ] Document a RESTful API with Swagger/OpenAPI and Core API
+- [ ] Check code for any code quality issues via a linter
 - [ ] Parameterize test functions and mock functionality in tests with Pytest
 
 
