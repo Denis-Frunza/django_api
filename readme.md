@@ -18,6 +18,8 @@ Tools and Technologies
 4. SQLite3
 5. Pytest
 6. Django REST Framework
+7. WhiteNoise
+8. Gunicorn
 
 TODO:
 - [ ] Develop a RESTful API CRUD with Python using Django, and Django REST Framework library.
@@ -27,7 +29,7 @@ TODO:
 - [X] Create a Custom User Model in Django
 - [X] Implement an API with Django REST Framework Views and Serializers
 - [ ] Configure GitLab CI for continuous integration and deployment
-- [ ] Deploy Django, Gunicorn to Heroku with Docker
+- [X] Deploy Django, Gunicorn to Heroku with Docker
 - [ ] Document a RESTful API with Swagger/OpenAPI and Core API
 - [ ] Check code for any code quality issues via a linter
 - [ ] Parameterize test functions and mock functionality in tests with Pytest
