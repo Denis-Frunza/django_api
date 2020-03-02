@@ -38,5 +38,5 @@ TODO:
 Info
 
 * Current version: 1.0.0
-* Last updated: February 23rd, 2020
+* Last updated: March 2nd, 2020
 * Author: Denis Frunza
