@@ -3,6 +3,9 @@ FROM python:3.8.1-alpine
 
 WORKDIR /usr/src/app
 
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
+
 ENV DEBUG 0
 ENV DJANGO_ALLOWED_HOSTS shrouded-gorge-18713.herokuapp.com
 
