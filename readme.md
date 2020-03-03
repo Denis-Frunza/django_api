@@ -20,18 +20,20 @@ Tools and Technologies
 6. Django REST Framework
 7. WhiteNoise
 8. Gunicorn
+9. Coverage.py
+10. flake8
 
 TODO:
 - [ ] Develop a RESTful API CRUD with Python using Django, and Django REST Framework library.
 - [X] Containerize Django inside a Docker container
 - [X] Test a Django app with Pytest
-- [ ] Run unit and integration tests with code coverage inside a Docker container
+- [X] Run unit and integration tests with code coverage inside a Docker container
 - [X] Create a Custom User Model in Django
 - [X] Implement an API with Django REST Framework Views and Serializers
 - [ ] Configure GitLab CI for continuous integration and deployment
 - [X] Deploy Django, Gunicorn to Heroku with Docker
 - [ ] Document a RESTful API with Swagger/OpenAPI and Core API
-- [ ] Check code for any code quality issues via a linter
+- [X] Check code for any code quality issues via a linter
 - [ ] Parameterize test functions and mock functionality in tests with Pytest
 
 
