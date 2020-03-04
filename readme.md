@@ -15,13 +15,15 @@ Tools and Technologies
 1. Python
 2. Django
 3. Docker
-4. SQLite3
+4. Postgresql
 5. Pytest
 6. Django REST Framework
 7. WhiteNoise
 8. Gunicorn
 9. Coverage.py
 10. flake8
+11. Black
+12. isort
 
 TODO:
 - [ ] Develop a RESTful API CRUD with Python using Django, and Django REST Framework library.
