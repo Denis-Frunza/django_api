@@ -1,0 +1,35 @@
+[
+  {
+    "model":"movies.review",
+    "pk":1,
+    "fields":{
+      "user":"Denis",
+      "comment":"",
+      "movie_id":1,
+      "rating":4,
+      "created_date":"2020-02-29T23:07:11.686Z"
+    }
+  },
+  {
+    "model":"movies.review",
+    "pk":1,
+    "fields":{
+      "user":"Max",
+      "comment":"",
+      "movie_id":2,
+      "rating":3,
+      "created_date":"2020-02-11T23:07:11.686Z"
+    }
+  },
+  {
+    "model":"movies.review",
+    "pk":1,
+    "fields":{
+      "user":"Sean",
+      "comment":"",
+      "movie_id":3,
+      "rating":1,
+      "created_date":"2020-03-10T23:07:11.686Z"
+    }
+  }
+]
