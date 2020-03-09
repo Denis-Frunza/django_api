@@ -12,7 +12,7 @@
   },
   {
     "model":"movies.review",
-    "pk":1,
+    "pk":2,
     "fields":{
       "user":"Max",
       "comment":"",
@@ -23,11 +23,11 @@
   },
   {
     "model":"movies.review",
-    "pk":1,
+    "pk":3,
     "fields":{
       "user":"Sean",
-      "comment":"",
       "movie_id":3,
+      "comment":"",
       "rating":1,
       "created_date":"2020-03-10T23:07:11.686Z"
     }

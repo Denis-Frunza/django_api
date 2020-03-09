@@ -5,4 +5,6 @@ from . import views
 urlpatterns = [
     path("movies/", views.ListCreateMovieAPI.as_view()),
     path("movies/<int:pk>/", views.SingleMovieAPiView.as_view()),
+    path("movies/<int:movie_pk>/reviews/", views.ListCreateReviewAPI.as_view()),
+    path("movies/<int:movie_pk>/reviews/<int:review_pk>", views.SingleReviewAPiView.as_view()),
 ]
