@@ -1,13 +1,20 @@
+from movies import custom_permissions
 from rest_framework import generics
 from django.shortcuts import get_object_or_404
+from django.http import Http404
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.response import Response
+from rest_framework import mixins, viewsets
 
-from .models import Movie, Review
-from .serializers import MovieSerializer, ReviewSerializer
+from .models import Movie, Review, CustomUser
+from .serializers import MovieSerializer, ReviewSerializer, RegistrationSerializer
 
 
 class ListCreateMovieAPI(generics.ListCreateAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    permission_classes = (custom_permissions.PostPermissions,)
 
 
 class SingleMovieAPiView(generics.RetrieveUpdateDestroyAPIView):
@@ -18,6 +25,7 @@ class SingleMovieAPiView(generics.RetrieveUpdateDestroyAPIView):
 class ListCreateReviewAPI(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    permission_classes = (custom_permissions.PostPermissions,)
 
     def get_queryset(self):
         return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'))
@@ -27,13 +35,32 @@ class ListCreateReviewAPI(generics.ListCreateAPIView):
         serializer.save(movie=movie)
 
 
-class SingleReviewAPiView(generics.RetrieveUpdateDestroyAPIView):
+class SingleReviewAPiView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
-    def get_object(self):
-        return get_object_or_404(
-            self.get_queryset(),
-            movie_id=self.kwargs.get('movie_pk'),
-            pk=self.kwargs.get('review_pk'),
-            )
+    def get_queryset(self):
+        return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), pk=self.kwargs.get('review_pk'))
+
+
+class CustomAuthToken(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email
+        })
+
+
+class UserCreateView(generics.ListCreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = RegistrationSerializer
+
+    for user in CustomUser.objects.all():
+        Token.objects.get_or_create(user=user)

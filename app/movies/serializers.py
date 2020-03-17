@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Movie, Review
+from .models import Movie, Review, CustomUser
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -21,4 +21,14 @@ class ReviewSerializer(serializers.ModelSerializer):
         read_only_fields = (
             "id",
             "created_date",
+        )
+
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = "__all__"
+        read_only_fields = (
+            "id",
+            "date_joined",
         )

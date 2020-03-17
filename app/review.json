@@ -3,7 +3,7 @@
     "model":"movies.review",
     "pk":1,
     "fields":{
-      "user":"Denis",
+      "user_id":1,
       "comment":"",
       "movie_id":1,
       "rating":4,
@@ -14,7 +14,7 @@
     "model":"movies.review",
     "pk":2,
     "fields":{
-      "user":"Max",
+      "user_id":1,
       "comment":"",
       "movie_id":2,
       "rating":3,
@@ -25,7 +25,7 @@
     "model":"movies.review",
     "pk":3,
     "fields":{
-      "user":"Sean",
+      "user_id":1,
       "movie_id":3,
       "comment":"",
       "rating":1,
