@@ -1,7 +1,8 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from rest_framework.authtoken.models import Token
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
 
 
 class CustomUserManager(BaseUserManager):
@@ -24,6 +25,7 @@ class CustomUserManager(BaseUserManager):
         )
         user.is_staff = True
         user.is_superuser = True
+        Token.objects.create(user=user)
         user.save()
         return user
 

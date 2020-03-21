@@ -1,14 +1,15 @@
-from movies import custom_permissions
-from rest_framework import generics
-from django.shortcuts import get_object_or_404
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+from rest_framework import generics
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
-from rest_framework import mixins, viewsets
 
-from .models import Movie, Review, CustomUser
-from .serializers import MovieSerializer, ReviewSerializer, RegistrationSerializer
+from movies import custom_permissions
+
+from .models import CustomUser, Movie, Review
+from .serializers import (MovieSerializer, RegistrationSerializer,
+                          ReviewSerializer)
 
 
 class ListCreateMovieAPI(generics.ListCreateAPIView):
@@ -62,5 +63,5 @@ class UserCreateView(generics.ListCreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = RegistrationSerializer
 
-    for user in CustomUser.objects.all():
-        Token.objects.get_or_create(user=user)
+    # for user in CustomUser.objects.all():
+    #     Token.objects.get_or_create(user=user)
