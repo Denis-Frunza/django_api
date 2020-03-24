@@ -32,3 +32,13 @@ class RegistrationSerializer(serializers.ModelSerializer):
             "id",
             "date_joined",
         )
+
+
+# class SingleReviewSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Review
+#         fields = ('comment', 'rating')
+#         read_only_fields = (
+#             "id",
+#             "created_date",
+#         )

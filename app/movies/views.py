@@ -1,4 +1,3 @@
-from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
@@ -32,16 +31,21 @@ class ListCreateReviewAPI(generics.ListCreateAPIView):
         return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'))
 
     def perform_create(self, serializer):
-        movie = get_object_or_404(Movie, pk=self.kwargs.get('movie_pk'))
-        serializer.save(movie=movie)
+        user_comment = self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), user_id=self.request.user.pk)
+        if user_comment:
+            raise ValueError('you cannot post more than one review')
+        else:
+            movie = get_object_or_404(Movie, pk=self.kwargs.get('movie_pk'))
+            serializer.save(movie=movie)
 
 
-class SingleReviewAPiView(generics.ListCreateAPIView):
+class SingleReviewAPiView(generics.RetrieveAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    permission_classes = (custom_permissions.PostPermissions,)
 
     def get_queryset(self):
-        return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), pk=self.kwargs.get('review_pk'))
+        return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), pk=self.kwargs.get('pk'))
 
 
 class CustomAuthToken(ObtainAuthToken):
@@ -62,6 +66,3 @@ class CustomAuthToken(ObtainAuthToken):
 class UserCreateView(generics.ListCreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = RegistrationSerializer
-
-    # for user in CustomUser.objects.all():
-    #     Token.objects.get_or_create(user=user)

@@ -88,7 +88,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.postgresql'),
-        "NAME": os.environ.get("SQL_DATABASE", 'movies' ),
+        "NAME": os.environ.get("SQL_DATABASE", 'movies'),
         "USER": os.environ.get("SQL_USER", 'movies'),
         "PASSWORD": os.environ.get("SQL_PASSWORD", 'movies'),
         "HOST": os.environ.get("SQL_HOST", 'localhost'),
