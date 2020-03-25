@@ -23,6 +23,13 @@ class ReviewSerializer(serializers.ModelSerializer):
             "created_date",
         )
 
+    def is_valid(self, raise_exception=False):
+        request = self.context['request']
+        movie_id = self.context['view']
+        self.initial_data.update({'user': request.user.pk,
+                                  'movie': movie_id.kwargs.get('movie_pk')})
+        return super().is_valid(raise_exception)
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,7 +39,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
             "id",
             "date_joined",
         )
-
 
 # class SingleReviewSerializer(serializers.ModelSerializer):
 #     class Meta:
