@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from rest_framework.authtoken.models import Token
 from django.db import models
 from django.utils import timezone
+from rest_framework.authtoken.models import Token
 
 
 class CustomUserManager(BaseUserManager):

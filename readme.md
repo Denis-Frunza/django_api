@@ -1,14 +1,18 @@
 
 
 
-| Endpoint      | HTTPMethod    | CRUD  |    Result            |
-| ------------- |:-------------:| -----:|---------------------:|
-| /api/movies   |   GET         | READ  | get all movies       |
-|/api/movies/:id|   GET         | READ  | get a single movie   |
-| /api/movies   |   POST        |CREATE | add a movie          |
-|/api/movies/:id|   PUT         |UPDATE | update a movie       |
-|/api/movies/:id|   DELETE      |DELETE | delete a movie       |
-
+| Endpoint      |      HTTPMethod      | CRUD          |                    Result                      |
+| ------------- |:--------------------:| -------------:|------------------------------------------------:                                     |
+|/api/v1/movies    |        GET        | READ  | get all movies                                         |
+|/api/v1/movies/:id|        GET        | READ  | get a single movie                                     |
+|/api/v1/movies    |        POST       |CREATE | add a movie                                            |
+|/api/v1/movies/:id|        PUT        |UPDATE | update a movie                                         |
+|/api/v1/movies/:id|        DELETE     |DELETE | delete a movie                                         |
+|/api/v1/movies/:id/review|  GET       |READ   | get all comments for movie                             |
+|/api/v1/movies/:id/review|  GET       |READ   | get all comments for movie                             |
+|/api/v1/movies/:id/review/:id|  GET   |READ   | get a comment from a list of comments to that movie    |
+|/api/v1/movies/:id/review|   POST     |CREATE | add a comment                                          |
+|/api/v1/registration     |   POST     |CREATE | add user                                               |
 
 Tools and Technologies
 
@@ -42,5 +46,5 @@ TODO:
 Info
 
 * Current version: 1.0.1
-* Last updated: March 21th, 2020
+* Last updated: March 27th, 2020
 * Author: Denis Frunza
