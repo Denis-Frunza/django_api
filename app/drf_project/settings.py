@@ -79,7 +79,8 @@ WSGI_APPLICATION = "drf_project.wsgi.application"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+    'EXCEPTION_HANDLER': 'drf_project.custom_exception.custom_exception_handler'
 }
 
 # Database
