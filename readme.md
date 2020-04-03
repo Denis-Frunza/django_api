@@ -9,7 +9,6 @@
 |/api/v1/movies/:id|        PUT        |UPDATE | update a movie                                         |
 |/api/v1/movies/:id|        DELETE     |DELETE | delete a movie                                         |
 |/api/v1/movies/:id/review|  GET       |READ   | get all comments for movie                             |
-|/api/v1/movies/:id/review|  GET       |READ   | get all comments for movie                             |
 |/api/v1/movies/:id/review/:id|  GET   |READ   | get a comment from a list of comments to that movie    |
 |/api/v1/movies/:id/review|   POST     |CREATE | add a comment                                          |
 |/api/v1/registration     |   POST     |CREATE | add user                                               |

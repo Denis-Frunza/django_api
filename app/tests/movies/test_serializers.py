@@ -1,4 +1,4 @@
-from movies.serializers import MovieSerializer
+from movies.serializers import MovieSerializer, ReviewSerializer
 
 
 def test_valid_serializer():
@@ -22,5 +22,19 @@ def test_invalid_movie_serializer():
     assert not serializer.is_valid()
     assert serializer.validated_data == {}
     assert serializer.data == invalid_serializer_data
-    print("test", serializer.errors)
     assert serializer.errors == {"year": ["This field is required."]}
+
+
+# def test_invalid_rate_range_serializer():
+#     invalid_serializer_data = {
+#         "user": 1,
+#         "movies": 4,
+#         "comment": "test",
+#         "rating": 6,
+#     }
+#     serializer = ReviewSerializer(data=invalid_serializer_data)
+#     assert not serializer.is_valid()
+#     assert serializer.validated_data == {}
+#     assert serializer.data == invalid_serializer_data
+#     print(serializer.errors)
+#     assert serializer.errors == {"year": ["This field is required."]}

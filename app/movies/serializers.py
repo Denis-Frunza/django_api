@@ -23,6 +23,10 @@ class ReviewSerializer(serializers.ModelSerializer):
             "created_date",
         )
 
+    def validate_rating(self, value):
+        if value not in range(1, 6):
+            raise serializers.ValidationError('You can rate in range from 1 to 5.')
+
     def is_valid(self, raise_exception=False):
         request = self.context['request']
         movie_id = self.context['view']
