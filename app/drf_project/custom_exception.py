@@ -1,8 +1,7 @@
 from django.http import Http404
 from movies.views import SingleMovieAPiView, SingleReviewAPiView
-from rest_framework.response import Response
 from rest_framework.views import exception_handler
-from rest_framework.exceptions import APIException, NotAuthenticated, MethodNotAllowed
+from rest_framework.exceptions import APIException, NotAuthenticated, ValidationError
 
 
 class ServiceUnavailable(APIException):
@@ -25,10 +24,6 @@ def custom_exception_handler(exc, context):
     elif isinstance(exc, NotAuthenticated):
         response.data = 'please login to leave a review'
         return response
+    elif isinstance(exc, ValidationError):
+        return response
 
-    # response = Response(status=500)
-    # if hasattr(exc, 'strerror'):
-    #     response.data = {'message': exc.strerror}
-    # else:
-    #     response.data = {'message': 'Server error'}
-    # return response

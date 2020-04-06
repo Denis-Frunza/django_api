@@ -1,19 +1,24 @@
 import pytest
+
 from movies.models import Movie
 
 
 @pytest.mark.django_db
-def test_add_movie_invalid_json(client):
-    response = client.post("/api/v1/movies/", {}, content_type="application/json")
+def test_add_movie_invalid_json(client, authentication):
+    response = client.post("/api/v1/movies/", {},
+                           content_type="application/json",
+                           HTTP_AUTHORIZATION=authentication,
+                           )
     assert response.status_code == 400
 
 
 @pytest.mark.django_db
-def test_add_movie_invalid_json_keys(client):
+def test_add_movie_invalid_json_keys(client, authentication):
     response = client.post(
         "/api/v1/movies/",
         {"title": "The Big Lebowski", "genre": "comedy", },
         content_type="application/json",
+        HTTP_AUTHORIZATION=authentication,
     )
     assert response.status_code == 400
 
@@ -31,11 +36,12 @@ def test_get_single_movie(client):
 
 
 @pytest.mark.django_db
-def test_add_movie(client):
+def test_add_movie(client, authentication):
     response = client.post(
         "/api/v1/movies/",
         {"title": "The Big Lebowski", "genre": "comedy", "year": "1998", },
         content_type="application/json",
+        HTTP_AUTHORIZATION=authentication
     )
     assert response.status_code == 201
 
@@ -77,14 +83,3 @@ def test_update_movie_incorrect_id(client):
 
     assert response.status_code == 404
 
-
-@pytest.mark.django_db
-def test_update_movie_invalid_json(client):
-    movie = Movie.objects.create(title="The big Lebowski", genre="comedy", year="1998")
-    response = client.put(
-        f"/api/v1/movies/{movie.id}/",
-        {"title": "The Big Lebowski", "genre": "comedy", },
-        content_type="application/json",
-    )
-
-    assert response.status_code == 400
