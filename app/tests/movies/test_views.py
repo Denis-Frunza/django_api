@@ -82,4 +82,3 @@ def test_update_movie_incorrect_id(client):
     response = client.put("/api/v1/movies/foo/")
 
     assert response.status_code == 404
-

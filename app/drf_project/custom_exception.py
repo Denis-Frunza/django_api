@@ -26,4 +26,3 @@ def custom_exception_handler(exc, context):
         return response
     elif isinstance(exc, ValidationError):
         return response
-

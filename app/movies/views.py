@@ -2,9 +2,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.response import Response
-from rest_framework.filters import BaseFilterBackend
 from rest_framework.exceptions import ValidationError
+from rest_framework.filters import BaseFilterBackend
+from rest_framework.response import Response
 
 from movies import custom_permissions
 
@@ -21,9 +21,10 @@ class ListCreateMovieAPI(generics.ListCreateAPIView):
     def get_queryset(self):
         year = self.request.query_params.get('year', None)
         if year is not None:
-            result = self.queryset.filter(year=year)
+            self.queryset.filter(year=year)
         else:
             return self.queryset.all()
+
     # class FilterBackend(BaseFilterBackend):
     #     def filter_queryset(self, request, queryset, view):
     #         return queryset.filter(**view.filter_params)
@@ -102,6 +103,3 @@ class CustomAuthToken(ObtainAuthToken):
 class UserCreateView(generics.ListCreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = RegistrationSerializer
-
-
-
