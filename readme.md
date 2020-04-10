@@ -45,5 +45,5 @@ TODO:
 Info
 
 * Current version: 1.0.1
-* Last updated: March 27th, 2020
+* Last updated: April 11th, 2020
 * Author: Denis Frunza
