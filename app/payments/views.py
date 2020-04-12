@@ -1,7 +1,9 @@
 import stripe
 from django.shortcuts import render
+from django.views.generic import TemplateView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.conf import settings
-from django.views.generic.base import TemplateView
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -17,10 +19,19 @@ class HomePageView(TemplateView):
     @staticmethod
     def charge(request):
         if request.method == 'POST':
-            stripe.Charge.create(
+            charge = stripe.Charge.create(
                 amount=500,
                 currency='usd',
                 description='A Django charge',
                 source=request.POST['stripeToken']
             )
-            return render(request, 'charge.html')
+        return render(request, 'charge.html')
+
+# class ChargeAPI(APIView):
+#
+#     def post(self, request, format=None):
+#         stripe.Charge.create(
+#             amount=500,
+#             currency='usd',
+#             description='A Django charge',
+#         )

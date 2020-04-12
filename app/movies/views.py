@@ -82,7 +82,7 @@ class SingleReviewAPiView(generics.RetrieveAPIView):
     permission_classes = (custom_permissions.PostPermissions,)
 
     def get_queryset(self):
-        return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), pk=self.kwargs.get('pk'))
+        return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), pk=self.kwargs.get('pk'))  # TODO:optimize it
 
 
 class CustomAuthToken(ObtainAuthToken):
