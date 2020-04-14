@@ -7,7 +7,7 @@ export const routes = [
     component: Movie
   },
   {
-    path: '/order/',
+    path: '/order/:id',
     component: Order,
   },
 

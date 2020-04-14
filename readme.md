@@ -1,7 +1,7 @@
 
 
 
-| Endpoint      |      HTTPMethod      | CRUD          |                    Result                      |
+| Endpoint      |      HTTP Method     | CRUD          |                    Result                      |
 | ------------- |:--------------------:| -------------:|------------------------------------------------:                                     |
 |/api/v1/movies    |        GET        | READ  | get all movies                                         |
 |/api/v1/movies/:id|        GET        | READ  | get a single movie                                     |
@@ -12,6 +12,10 @@
 |/api/v1/movies/:id/review/:id|  GET   |READ   | get a comment from a list of comments to that movie    |
 |/api/v1/movies/:id/review|   POST     |CREATE | add a comment                                          |
 |/api/v1/registration     |   POST     |CREATE | add user                                               |
+
+| Endpoint(Stripe)      |      HTTP Method     | CRUD          |                    Result              |
+| ----------------------|:--------------------:| -------------:|----------------------------------------:                                     |
+|/api/v1/payment/charge |       POST           | CREATE        | purchase a movie                       |
 
 Tools and Technologies
 
@@ -44,6 +48,6 @@ TODO:
 
 Info
 
-* Current version: 1.0.1
-* Last updated: April 11th, 2020
+* Current version: 1.0.2
+* Last updated: April 14th, 2020
 * Author: Denis Frunza

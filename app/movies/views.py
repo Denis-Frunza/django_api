@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.exceptions import ValidationError
-from rest_framework.filters import BaseFilterBackend
+from rest_framework.exceptions import ValidationError  # isort:skip
+from rest_framework.filters import BaseFilterBackend   # isort:skip
 from rest_framework.response import Response
 
 from movies import custom_permissions
