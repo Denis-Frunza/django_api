@@ -10,7 +10,7 @@ from movies import custom_permissions
 
 from .models import CustomUser, Movie, Review
 from .serializers import (MovieSerializer, RegistrationSerializer,
-                          ReviewSerializer)
+                          ReviewSerializer, LoginSerializer)
 
 
 class ListCreateMovieAPI(generics.ListCreateAPIView):
@@ -68,7 +68,7 @@ class ListCreateReviewAPI(generics.ListCreateAPIView):
         return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'))
 
     def perform_create(self, serializer):
-        user_comment = self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), user_id=self.request.user.pk)
+        user_comment = self.queryset.filter(movie_id=self.kwargs.get('movie_pk'))
         if user_comment:
             raise ValueError('you cannot post more than one review')
         else:
@@ -77,26 +77,25 @@ class ListCreateReviewAPI(generics.ListCreateAPIView):
 
 
 class SingleReviewAPiView(generics.RetrieveAPIView):
-    queryset = Review.objects.all()
+    queryset = Review.objects.all().select_related('user')
     serializer_class = ReviewSerializer
     permission_classes = (custom_permissions.PostPermissions,)
 
     def get_queryset(self):
-        return self.queryset.filter(movie_id=self.kwargs.get('movie_pk'), pk=self.kwargs.get('pk'))  # TODO:optimize it
+        return self.queryset.filter(pk=self.kwargs.get('pk'), movie_id=self.kwargs.get('movie_pk'))  # TODO:optimize it
 
 
 class CustomAuthToken(ObtainAuthToken):
+    serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
+        token = Token.objects.get(user=user)
         return Response({
             'token': token.key,
-            'user_id': user.pk,
-            'email': user.email
         })
 
 
