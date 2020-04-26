@@ -18,7 +18,6 @@ class MovieSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
 
     class Meta:
         model = Review
@@ -28,19 +27,22 @@ class ReviewSerializer(serializers.ModelSerializer):
             "created_date",
         )
 
-    def get_user(self, obj):
-        return obj.user.username
-
-    def validate_rating(self, value):
-        if value not in range(1, 6):
-            raise serializers.ValidationError('You can rate in range from 1 to 5.')
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation["username"] = instance.user.username
+        return representation
 
     def is_valid(self, raise_exception=False):
         request = self.context['request']
         movie_id = self.context['view']
-        self.initial_data.update({'user': request.user.id,
+        self.initial_data.update({'user': request.user.pk,
                                   'movie': movie_id.kwargs.get('movie_pk')})
         return super().is_valid(raise_exception)
+
+    def validate_rating(self, rating):
+        if rating not in range(1, 6):
+            raise serializers.ValidationError('You can rate in range from 1 to 5.')
+        return rating
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -72,7 +74,6 @@ class LoginSerializer(serializers.ModelSerializer):
                     email=email,
                 )
                 email = user_request.email
-
             user = authenticate(email=email, password=password)
 
         attrs['user'] = user
